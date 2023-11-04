@@ -35,9 +35,14 @@ get_name_in_email([None, 'abb#ccc'])                      | ['ERROR invaid email
 def get_name_in_email(email_list):
   kq = []
   for email in email_list:
-    if email is not None and '@' in email and 0 < email.index('@') < len(email)-1 and email.count('@') == 1 and '.' in email and email.index('@') < email.rindex('.') < len(email)-1:
-      name = email[:email.index('@')]
-      kq.append(name)
+    if email is not None:
+      email = str(email)
+      #check email phải có duy nhất 1 kí tự '@' ở giữa chuổi và sau đó có kí tự '.'
+      if '@' in email and 0 < email.index('@') < len(email)-1 and email.count('@') == 1 and '.' in email and email.index('@') < email.rindex('.') < len(email)-1:
+        name = email[:email.index('@')]
+        kq.append(name)
+      else:
+        kq.append('ERROR invaid email')
     else:
       kq.append('ERROR invaid email')
   return kq
